@@ -1,0 +1,361 @@
+1. What is data structure ? and types of data structure.
+A data structure is a way of organizing data in a computer so that it can be used efficiently. 
+Data structures are used to store, organize, and retrieve data, and to perform operations on that data.
+
+Data structures can be broadly classified into two types¹²:
+
+1. Linear Data Structures: 
+Data elements are arranged sequentially or linearly.
+Examples of linear data structures are array, stack, queue, linked list.
+  1) Static Data Structure : 	It has a fixed memory size.
+				It is easier to access the elements in a static data structure.
+				Ex. Array
+  2) Dynamic Data Structure : 
+				The size is not fixed. 
+				It can be randomly updated during the runtime which may be considered efficient concerning the memory (space) complexity of the code. 
+				Examples of this data structure are queue, stack, etc².
+2.Non-linear Data Structures - Data elements are not placed sequentially or linearly. 
+				In a non-linear data structure, we can’t traverse all the elements in a single run only. 
+				Examples of non-linear data structures are trees and graphs².
+******************************************************************************************************************************************************************
+2. Explain linked list and explain logic for inserting node at nth position.
+linked list is lineaar data structure.
+we can dynamically grow and shrink the size of ll.
+where each element is separate object known as node- consists of 2 fields - data and next
+add data at pos- 
+create new node
+traverse the list upto pos-1
+insert the node
+public void addpos(int pos,int data)
+{
+	node n1 = new node(data);
+	if(head==null)
+	{
+		head=n1;
+	}
+	else if(pos==1)
+	{
+		n1.next=head;
+		head=n1;
+	}
+	else
+	{
+		node move=head;
+	for(int i=1;i<pos-1;i++){move=move.next;}
+		n1.next=move.next;
+		move.next=n1;
+	}
+	
+}
+******************************************************************************************************************************************************************
+3. Explain Working of doubly linked list. and deleting node at nth position.
+public void deletenode(int pos)
+{
+	if(head==null)
+		return;
+	else if(pos==1)
+	{
+		node del=head;
+		head=head.next;
+		del=null;
+	}
+	else
+	{
+		node move=head;
+		for(int i=1;i<pos-1;i++)
+		{
+			move=move.next;
+		}
+		node del=move.next;
+		if(del.next!=null)
+		{
+		del.next.prev=move;
+		}
+		move.next=del.next;
+		
+	}
+}
+******************************************************************************************************************************************************************
+4. What is Tree data structure ? and application of Tree data structure.
+tree is non linear data structure 
+it is heirarchical data structure in which a collection elements known as nodes 
+& all nodes are directly and indirectly connected to root node.-
+Application of tree DS - 
+Searching Efficiency : Trees provide an efficient way to search for data. ex BST
+Sorting: Trees can be used to sort data efficiently. For example, Self- BST , the data is automatically sorted as it is inserted into the tree¹.
+Dynamic Data: Trees are dynamic data structures, which means that they can grow and shrink as needed.
+Efficient Insertion and Deletion : Trees provide efficient algorithms for inserting and deleting data. which is very hard to do in array , 
+if we delete data in between in array if have to shift all the data .
+******************************************************************************************************************************************************************
+5. Explain logic for delete node from Binary Search Tree.
+search the element int the tree
+node tag=null;
+node temp=root;
+while(temp!=null && temp.data!+data)
+{
+	tag=temp;
+	if(data>temp.data)
+	{
+		temp=temp.right;
+	}
+	else
+	{
+		temp=temp.left;
+	}
+}
+if(temp.right==null)
+{
+	if(tag.data>temp.data)
+	{
+		tag.left=temp.left;
+	}	
+	else
+	{
+		tag.right=temp.left;
+	}
+}
+if(temp.left==null)
+{
+	if(tag.data>temp.data)
+	{
+		tag.right=temp.right;
+	}
+	else
+	{
+		tag.left=temp.right;
+	}
+}
+if(temp.left!=null && temp.right!=null)
+{
+	node tr= temp.right;
+	while(tr.left!=null)
+	tr=tr.left;
+
+	tr.left=temp.left;
+	
+	if(tag.data>temp.data)
+	{
+		tag.left=temp.right;
+	}
+	else
+	{
+		tag.right=temp.right;
+	}
+}
+
+******************************************************************************************************************************************************************
+6. Explain types of Tree.
+tree is non linear data structure 
+it is heirarchical data structure in which a collection elements known as nodes 
+& all nodes are directly and indirectly connected to root node.-
+types of tree - general tree - nodes having multiple children.
+		binary tree - any node can have maximum 2 children
+
+Types of binary tree - 
+	1)Binary Search Tree - node having data greater than root - right 
+				node having data less - left
+	2)Perfect BT - all leaf nodes are at same height
+	3)Full binary tree - every node must have 0 or 2 children.
+	4)Complete BT - all nodes are left inclined
+	5)AVL tree - balanced tree - nodes balance factor (Height of left subtree - height of right subtree)(1  0  -1)
+******************************************************************************************************************************************************************
+7. Explain AVL Tree and it's rotation.
+An **AVL tree** is a self-balancing Binary Search Tree (BST).
+AVL tree - balanced tree - nodes balance factor (Height of left subtree - height of right subtree)(1  0  -1)
+any node in tree is not balanced entire tree is not balanced
+
+An AVL tree may rotate in one of the following four ways to keep itself balanced¹:
+1. **Left Rotation**: When a node is added into the right subtree of the right subtree, if the tree gets out of balance, we do a single left rotation¹.
+2. **Right Rotation**: If a node is added to the left subtree of the left subtree, the AVL tree may get out of balance, we do a single right rotation¹.
+3. **Left-Right Rotation**: A left-right rotation is a combination in which first left rotation takes place after that right rotation executes¹.
+4. **Right-Left Rotation**: A right-left rotation is a combination in which first right rotation takes place after that left rotation executes¹.
+******************************************************************************************************************************************************************
+8. Explain Traversal methods of Tree.
+Tree traversal is the process of visiting all the nodes in a tree in a systematic way. There are two main tree traversal methods:
+
+**1. Depth-first search (DFS)**
+
+DFS starts at the root node of the tree and recursively visits all of its child nodes before returning to the parent node. 
+This is done by using a stack data structure to keep track of the nodes that need to be visited.
+
+**2. Breadth-first search (BFS)**
+
+BFS starts at the root node of the tree and visits all of its child nodes level-by-level. 
+This is done by using a queue data structure to keep track of the nodes that need to be visited.
+
+In addition to DFS and BFS, there are a number of other tree traversal methods that can be used for specific applications. For example, there are algorithms for finding the in-order, pre-order, and post-order traversals of a binary tree.
+
+**In-order traversal**
+
+In-order traversal visits the nodes of a binary tree in the following order:
+
+1. Visit the left subtree.
+2. Visit the current node.
+3. Visit the right subtree.
+
+In-order traversal is often used to print the elements of a binary search tree in ascending order.
+
+**Pre-order traversal**
+
+Pre-order traversal visits the nodes of a binary tree in the following order:
+
+1. Visit the current node.
+2. Visit the left subtree.
+3. Visit the right subtree.
+
+Pre-order traversal is often used to create a prefix expression from an expression tree.
+
+**Post-order traversal**
+
+Post-order traversal visits the nodes of a binary tree in the following order:
+
+1. Visit the left subtree.
+2. Visit the right subtree.
+3. Visit the current node.
+
+Post-order traversal is often used to delete the nodes of a binary tree.
+
+******************************************************************************************************************************************************************
+9. Explain Traversal  methods of Graph.
+
+Graph traversal is the process of visiting all the vertices in a graph in a systematic way. There are two main graph traversal methods:
+
+**1. Breadth-first search (BFS)**
+
+BFS starts at a vertex and visits all of its adjacent vertices before moving on to the next level of the graph. 
+This is done by using a queue data structure to keep track of the vertices that need to be visited.
+
+**2. Depth-first search (DFS)**
+
+DFS starts at a vertex and recursively visits all of its adjacent vertices before returning to the previous vertex. 
+This is done by using a stack data structure to keep track of the vertices that need to be visited.
+
+
+**BFS**
+
+* BFS is a good choice for finding the shortest path between two vertices in a graph.
+* BFS is also a good choice for finding all of the vertices in a connected component of a graph.
+
+**DFS**
+
+* DFS is a good choice for finding all of the vertices in a graph that are reachable from a given vertex.
+* DFS is also a good choice for finding all of the cycles in a graph.
+
+Here is an example of a simple graph:
+
+```
+A --> B --> C
+|      |      |
+D --> E --> F
+```
+
+If we start at vertex A and traverse the graph using BFS, we would visit the vertices in the following order: A, B, C, D, E, F.
+
+If we start at vertex A and traverse the graph using DFS, we could visit the vertices in the following order: A, B, E, F, D, C.
+
+
+******************************************************************************************************************************************************************
+10.Explain working of Quick Sort.
+
+******************************************************************************************************************************************************************
+11.What is searching ? and types of searching.
+
+Searching is the process of finding an item with specified properties from a collection of items. 
+
+1) Linear Search - comparing the search key to each element in the data set until it finds a match.
+			key=take from user;
+		for(int i=0;i<arr.length;i++)
+			if(key==arr[i])
+			syso[i] index print
+			break;
+			
+
+2) Binary Search - This method works efficiently on sorted arrays.
+		It works with the divide and conquer algorithm
+		
+		int left=0 right=arr.length -1
+		while(left<=right)
+			int mid=(left+right)/2
+			if(arr[mid]==key)
+			syso key found
+			else if(kay>arr[mid]
+			left=mid+1
+			else if(key<arr[mid]
+			right=mid-1
+
+******************************************************************************************************************************************************************
+12.How to merge two linked list.
+
+public void ListNode mergelinkedlist( ListNode l1, ListNode l2)
+{
+	ListNode l= new ListNode();
+	ListNode temp=l;
+	while(l1!=null && l2!=null)
+	{
+		if(l1.val<=l2.val)
+		{	
+			temp.next=l1;
+			l1=l1.next;
+		}
+		else
+		{
+			temp.next=l2;
+			l2=l2.next;
+		}
+	}
+
+	if(l2==null)
+	{
+		temp.next=l1;
+	}
+	else if(l1==null)
+	{
+		temp.next=l2;
+	}
+	return l;
+}
+
+******************************************************************************************************************************************************************
+13.Explain working of merge sort.
+
+******************************************************************************************************************************************************************
+14 Explain Hashing.
+
+is the process of mapping large amount of data item to smaller table with the help of hashing function.
+
+Hashing is a technique for storing and retrieving data efficiently. 
+It works by converting a data item into a unique identifier, called a hash value. 
+The hash value is then used to store the data item in a hash table.
+
+Hash tables are data structures that store key-value pairs.
+it is the clooection of items stored to make it esy to find them later.
+The key is used to hash the data item and the value is the data item itself. 
+
+hash = hasfun(key) 
+
+index= hash % array size
+Let's say we have a hash function `H(x)` that maps the value `x` at the index `x%10` in an array. 
+If the list of values is `[11,12,13,14,15]`, it will be stored at positions `{1,2,3,4,5}` in the array or hash table respectively.
+
+
+One Problem with Hashing is - collission
+A collision occurs when two different data items have the same hash value. 
+
+
+******************************************************************************************************************************************************************
+15. collision resolution techniques.
+
+collision occus if two keys are assigned the same index number in the hash table.
+the collission creates a problem because each index in a hash table is supposed to store only one valus.
+
+collission resolution techniques-
+linear probing
+- we do a sequential search to find the empty location.
+- 
+******************************************************************************************************************************************************************
+
+
+
+
+
+
